@@ -2,6 +2,7 @@ from typing import Union, List
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -38,3 +39,6 @@ def read_item(pesel: int):
 def update_item(pesel: int, data: Data):
     dummy_users[pesel] = {"pesel": pesel, **data.model_dump()}
     return dummy_users[pesel]
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8002)
