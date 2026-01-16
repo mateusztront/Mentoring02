@@ -7,11 +7,10 @@ app = FastAPI()
 @app.get('/{pesel}')
 async def root(pesel: int):
     async with aiohttp.ClientSession() as session:
-        # async with session.get(f'http://127.0.0.1:8000/users/{pesel}') as resp:
-        #     return await resp.json()
+        async with session.get(f'http://127.0.0.1:8002/users/{pesel}') as resp:
+            return await resp.json()
         print('We are inside App1 Fastapi')
-        response = await session.get(f'http://127.0.0.1:8000/users/{pesel}')
-        return response.json()
+
     
 @app.get('/')
 def hello():
